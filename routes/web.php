@@ -18,3 +18,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('login', 'LoginController@index')->name('login');
 
 Route::post('login', 'LoginController@login')->name('login');
+
+
+Route::get('dashboard', 'DashboardController@index')->name('dashboard');
