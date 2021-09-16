@@ -5,7 +5,7 @@
     <div class="container-fluid top-container">
         <h1 class="text-center">LOGIN</h1>
        
-        <form method="post" class="mx-3 loginForm">
+        <form  method="post" class="mx-3 loginForm">
             @csrf
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -20,11 +20,20 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Login</button>
         </form>
+       
+        <div class="mx-3 mt-3 loginForm">
+            <a href="{{route('otplogin')}}">
+                <button class="btn btn-warning">Login Via OTP</button>
+            </a>
+        </div>
         @if(session('loginFailed'))
             <h5 class="text-danger mt-3 text-center">Login Failed!</h5>
         @endif
     </div>
+
+    
+
 
 @endsection

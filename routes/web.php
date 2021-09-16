@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('login', 'LoginController@index')->name('login');
+Route::get('login/otp', 'LoginController@indexForOtp')->name('otplogin');
+Route::post('login/otp', 'LoginController@sendOTP');
+Route::post('login/verifyOTP', 'LoginController@verifyOTP');
 
 Route::post('login', 'LoginController@login')->name('login');
 
