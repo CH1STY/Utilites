@@ -11,14 +11,14 @@
 </head>
 
 <body>
-    @include('dashboard.component.navbar')
+    @include('component.navbar')
 
     <div>
 
         @yield('content')
     </div>
 
-    @include('dashboard.component.footer')
+    @include('component.footer')
 
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 </body>
