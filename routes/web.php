@@ -25,11 +25,19 @@ Route::post('login', 'LoginController@login')->name('login');
 
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
+
 Route::get('registration', 'RegistrationController@index')->name('registration');
 
 Route::post('registration', 'RegistrationController@store')->name('registration');
 
 Route::post('update/image','RegistrationController@updateImage')->name('update_image');
+
+
+
+Route::get('user/edit', 'UserController@editView')->name('user.edit');
+Route::post('user/edit', 'UserController@update');
+
+Route::get('search','SearchController@index')->name('search');
 
 
 Route::get('logout', 'LogoutController@index')->name('logout');
