@@ -41,3 +41,5 @@ Route::get('search','SearchController@index')->name('search');
 
 
 Route::get('logout', 'LogoutController@index')->name('logout');
+
+Route::post('volunteer/info/update','VolunteerController@update')->name('volunteer.update');

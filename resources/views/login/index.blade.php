@@ -4,7 +4,9 @@
 @section('content')
     <div class="container-fluid top-container">
         <h1 class="text-center">LOGIN</h1>
-       
+        @if(session('msg'))
+        <h4 class="text-center text-success">{{session('msg')}}</h4>
+        @endif
         <form  method="post" class="mx-3 loginForm">
             @csrf
             <div class="mb-3">
