@@ -43,3 +43,9 @@ Route::get('search','SearchController@index')->name('search');
 Route::get('logout', 'LogoutController@index')->name('logout');
 
 Route::post('volunteer/info/update','VolunteerController@update')->name('volunteer.update');
+
+//Work Request routes
+Route::post('work/request/{id}','WorkRequestController@requestWork')->name('work.request');
+Route::post('work/fetchRequest/{v_id}','WorkRequestController@fetchWork')->name('work.fetch');
+
+//--------------------

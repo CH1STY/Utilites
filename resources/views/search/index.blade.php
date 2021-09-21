@@ -21,7 +21,18 @@
 
         </style>
 
+        <input type="hidden" id="_token" value={{ csrf_token() }}>
+        
+        
         <h6> Search Volunteer </h6>
+        <div id="noPosition" class="my-5" style="display: none">
+            <div class="text-center">
+                <h3 class="text-danger">Location not authorized. Please check your location permissions settings.</h3>
+
+            </div>
+        </div>
+
+
         <div class="d-flex justify-content-center">
             <div id="mapid"></div>
 
@@ -32,10 +43,13 @@
         <script>
             function getLocation() {
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition);
-                } else {
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                }
+                    navigator.geolocation.getCurrentPosition(showPosition, positionNotFound);
+                } else {}
+            }
+
+            function positionNotFound() {
+                let position = document.getElementById("noPosition");
+                position.style.display = "block";
             }
 
             function showPosition(position) {
@@ -48,6 +62,11 @@
             }
 
             getLocation();
+
+
+            function requestUser(volunteerId) {
+                postRequestUser(volunteerId, '{{ route('work.request', ['id' => session('userid')]) }}')
+            }
         </script>
 
 
@@ -64,24 +83,19 @@
                     accessToken: 'pk.eyJ1IjoiY2gxc3R5IiwiYSI6ImNrdHJlMm02bDE1a2wycG85dDF0MDIyMnoifQ.cBXlMRYQRO0ZS0X8sgIaSg'
                 }).addTo(mymap);
 
-                
+
                 {!! $markerScript !!}
-                
+
                 L.marker([latitude, longitude]).addTo(mymap)
                     .bindPopup('Your Current Location')
                     .openPopup();
-             
+
 
             }
-
-            function callUser(phone) {
-                window.open(`tel:${phone}`);
-            }
-
         </script>
 
 
-        
+        <script src="{{ asset('assets/js/hire.js') }}"></script>
 
         {{-- end of scripts --}}
     </div>
