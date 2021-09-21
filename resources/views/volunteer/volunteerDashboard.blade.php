@@ -9,16 +9,22 @@
     @csrf
 
     <div class="">
-    <label for=" worktype">WorkType</label>
+        <label for=" worktype">WorkType</label>
         <select name="worktype" class="form-select" required id="">
             <option value="heavyA">HeavyA</option>
             <option value="heavyB">HeavyB</option>
             <option value="heavyC">HeavyC</option>
+            <option value="moderateA">ModerateA</option>
+            <option value="moderateB">ModerateB</option>
+            <option value="moderateC">ModerateC</option>
+            <option value="liteA">LiteA</option>
+            <option value="liteB">LiteB</option>
+            <option value="liteC">LiteC</option>
         </select>
     </div>
 
     <div class="">
-    <label for=" area">Area</label>
+        <label for=" area">Area</label>
         <select class="form-select" name="work_area" required id="">
             <option value="dhaka">Dhaka</option>
             <option value="chittagong">Chittagong</option>
@@ -26,7 +32,7 @@
         </select>
     </div>
     <div class="">
-    <label for=" area">Availability</label>
+        <label for=" area">Availability</label>
         <select class="form-select" name="availablity" required id="">
             <option value="yes">Yes</option>
             <option value="no">No</option>
@@ -57,7 +63,7 @@
             longitude
         } = position.coords;
         // console.log(latitude,longitude);
-        myLocationSetter(latitude+0.01, longitude+0.01); //Adding 0.01 due to working from the same latitude and longitude
+        myLocationSetter(latitude + 0.01, longitude + 0.01); //Adding 0.01 due to working from the same latitude and longitude
     }
 
     getLocation();
@@ -65,7 +71,7 @@
     //23.762498400000002 90.4475341;
 
     function myLocationSetter(latitude, longitude) {
-        document.getElementById('longitude').value =  longitude;
-        document.getElementById('latitude').value =  latitude;
+        document.getElementById('longitude').value = longitude;
+        document.getElementById('latitude').value = latitude;
     }
 </script>

@@ -43,8 +43,10 @@ class RegistrationController extends Controller
             }
             $user->national_id = $request->national_id;
             $user->date_of_birth = $request->date_of_birth;
-            $user->image  = $filename;
+            $user->image  = "x";
             if ($user->save()) {
+                $user->image="user".$user->id.".jpg";
+                $user->save();
                 $voluterInfo->userid =  $user->id;
                 $voluterInfo->save();
                 $file->move('assets/images/users/', 'user' . $user->id . '.jpg');
