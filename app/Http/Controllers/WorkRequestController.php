@@ -30,7 +30,7 @@ class WorkRequestController extends Controller
             $newWorkRequest->expired_at = date("Y-m-d H:i:s", time() + 60);
             if($newWorkRequest->save())
             {
-                return response()->json("success");
+                return response()->json($newWorkRequest);
             }
             else
             {
@@ -62,4 +62,28 @@ class WorkRequestController extends Controller
         }
         
     }
+
+    public function removeRequest(Request $request, $id)
+    {
+        $workRequest = WorkRequest::find($id);
+
+        if($workRequest->delete()){
+            return response()->json(true);
+        }else{
+            return response()->json(false);
+
+        }
+    }
+    public function isExist(Request $request, $id)
+    {
+        $workRequest = WorkRequest::find($id);
+
+        if($workRequest){
+            return response()->json(true);
+        }else{
+            return response()->json(false);
+        }
+    }
+
+    
 }

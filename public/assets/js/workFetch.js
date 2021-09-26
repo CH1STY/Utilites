@@ -1,4 +1,3 @@
-   
 async function fetchWork(url, myModal) {
     let response = await FetchRequest(url);
     console.log("called");
@@ -7,8 +6,23 @@ async function fetchWork(url, myModal) {
         work_details.innerHTML = response.details;
         isFounded = true;
         myModal.show();
+        let clsBtn = document.getElementById("clsBtn");
+        clsBtn.onclick = ()=>{removeRequest(response)};
     } else {
     }
+}
+
+async function removeRequest(id) {
+    await cancelRequest(id.id);
+    isFounded = false;
+}
+
+async function cancelRequest(id) {
+    url = `/work/remove/${id}`;
+    const response = await fetch(url, {
+        method: "GET",
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
 }
 
 async function FetchRequest(url) {

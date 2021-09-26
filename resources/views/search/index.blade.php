@@ -22,8 +22,8 @@
         </style>
 
         <input type="hidden" id="_token" value={{ csrf_token() }}>
-        
-        
+
+
         <h6> Search Volunteer </h6>
         <div id="noPosition" class="my-5" style="display: none">
             <div class="text-center">
@@ -37,6 +37,25 @@
             <div id="mapid"></div>
 
         </div>
+
+        {{-- Request Waiting Modal --}}
+        <div class="modal fade" id="requestWaitingModal" tabindex="-1" aria-labelledby="requestWaitingModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-secondary text-success text-uppercase" id="requestWaitingModalLabel">Waiting for Volunteer to Accept</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="h3 text-center fw-bold" id="clock"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="closeRequestModal()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Request Waiting Modal Ends --}}
 
         {{-- Scripts --}}
 

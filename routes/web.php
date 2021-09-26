@@ -50,4 +50,7 @@ Route::post('volunteer/info/update','VolunteerController@update')->name('volunte
 Route::post('work/request/{id}','WorkRequestController@requestWork')->name('work.request');
 Route::post('work/fetchRequest/{v_id}','WorkRequestController@fetchWork')->name('work.fetch');
 
+Route::get('work/isExist/{id}','WorkRequestController@isExist')->name('work.isExist');
+Route::get('work/remove/{id}','WorkRequestController@removeRequest')->name('work.remove');
+
 //--------------

@@ -65,7 +65,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Accept</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="clsBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
                 </form>
             </div>
@@ -86,11 +86,13 @@
         });
 
 
+     
+        
         setInterval(function() {
             if(!isFounded) {
                 fetchWork('{{ route('work.fetch', ['v_id' => session('userid')]) }}', myModal)
             }
-        }, 5000);
+        }, 1000);
 
 
 

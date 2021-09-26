@@ -148,6 +148,14 @@ footer .card {
     display:flex;
 }
 
+.success{
+    color: green;
+
+}
+
+.expired{
+    color:red;
+}
 
 .nav-link{
     display:flex;

@@ -1,3 +1,6 @@
+var timeout = 0;
+var timerStat = "run";
+
 function getVariable() {
     var $_GET = {};
     if (document.location.toString().indexOf("?") !== -1) {
@@ -18,15 +21,91 @@ function getVariable() {
     return $_GET;
 }
 
-async function postRequestUser(volunteerId,url) { 
-    let GetVariables = getVariable();
-    // console.log(GetVariables.worktype);
-    let response = await SendRequest(volunteerId,url,GetVariables);
-    console.log(response);
+function changeTimeout(timeout) {
+    return timeout - 1;
 }
 
+function closeRequestModal() {
+    timerStat = "stop";
+}
 
-async function SendRequest(volunteerId,url,gets) {
+async function cancelRequest(id) {
+    url = `/work/remove/${id}`;
+    const response = await fetch(url, {
+        method: "GET",
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
+async function isRequestExist(id) {
+    url = `/work/isExist/${id}`;
+    const response = await fetch(url, {
+        method: "GET",
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
+function countDownControll(id) {
+    var requestModal = new bootstrap.Modal(
+        document.getElementById("requestWaitingModal"),
+        {
+            keyboard: false,
+        }
+    );
+
+    var timer = setInterval(function () {
+        let myClock = document.getElementById("clock");
+
+        isRequestExist(id).then((res) => {
+            if (!res) {
+                myClock.innerHTML = `<span class="h2 fw-bold text-warning"> Request Declined by Volunteer </span>`;
+                clearInterval(timer);
+            }
+        });
+
+        myClock.innerHTML = `<span class="h2 fw-bold text-warning"> ${timeout} </span>`;
+
+        timeout = changeTimeout(timeout);
+
+        if (timerStat === "stop") {
+            clearInterval(timer);
+            document.getElementById(
+                "clock"
+            ).innerHTML = `<span class="h2 fw-bold text-uppercase text-danger"> Request Declined </span>`;
+            cancelRequest(id);
+        } else if (timeout < 0) {
+            clearInterval(timer);
+            document.getElementById(
+                "clock"
+            ).innerHTML = `<span class="h2 fw-bold text-uppercase text-danger"> Request Declined </span>`;
+            cancelRequest(id);
+        }
+    }, 1000);
+}
+
+async function postRequestUser(volunteerId, url) {
+    // Modal Part
+    var requestModal = new bootstrap.Modal(
+        document.getElementById("requestWaitingModal"),
+        {
+            keyboard: false,
+        }
+    );
+
+    requestModal.show();
+
+    timeout = 30;
+    timerStat = "run";
+
+    // End of Modal Part
+
+    let GetVariables = getVariable();
+    // console.log(GetVariables.worktype);
+    let response = await SendRequest(volunteerId, url, GetVariables);
+    countDownControll(response.id);
+}
+
+async function SendRequest(volunteerId, url, gets) {
     let data = {
         volunteerId: volunteerId,
         _token: document.getElementById("_token").value,
