@@ -28,3 +28,23 @@
                     </div>
                 </form>
              </div>
+<!-- 
+    </div>
+    <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center">Card title</h5>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center">Card title</h5>
+
+            </div>
+        </div>
+
+    </div> -->

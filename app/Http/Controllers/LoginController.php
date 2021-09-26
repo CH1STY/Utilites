@@ -8,6 +8,7 @@ use App\User;
 use App\Mail\OTPMail;
 use Illuminate\Support\Facades\Mail;
 use App\OTP;
+use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
@@ -16,7 +17,7 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $user = User::where('email', $request->email)
             ->where('password', $request->password)->first();

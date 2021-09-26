@@ -14,6 +14,6 @@ class DashboardController extends Controller
         $user = User::where('id',$request->session()->get('userid'))->first();
         return view('dashboard.index')->with('user',$user);
     }
-
+   
 
 }

@@ -14,6 +14,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('user.edit') }}">Profile-Settings</a>
+                </li>
                 @endif
                 @if (!session('username'))
                 <li class="nav-item">

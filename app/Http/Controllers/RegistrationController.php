@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\VolunteerInformation;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\RegRequest;
+use App\Http\Requests\PhotoeditRequest;
 class RegistrationController extends Controller
 {
     public function index()
@@ -14,7 +15,7 @@ class RegistrationController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(RegRequest $request)
     {
 
         if ($request->hasFile('myfile')) {
@@ -57,7 +58,7 @@ class RegistrationController extends Controller
         }
     }
 
-    public function updateImage(Request $request)
+    public function updateImage(PhotoeditRequest $request)
     {
         if ($request->image) {
             $file = $request->file('image');

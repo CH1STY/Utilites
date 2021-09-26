@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <p class="small ps-lg-4 card-para-text small-font text-left">All rights reserved by Chisty2021 </p>
+                <p class="small ps-lg-4 card-para-text small-font text-left">All rights reserved by OVMS 2021 </p>
             </div>
         </div>
     </div>

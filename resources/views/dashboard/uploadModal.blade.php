@@ -26,5 +26,10 @@
         </div>
     </div>
 </div>
-
-<script src="{{ asset('assets/js/update_image.js') }}"></script>
+@error('image')
+    <span class="alert alert-danger">{{ $message }}</span>
+@enderror
+{{-- @foreach ($errors->all() as $err)
+    <p class="alert alert-danger">{{ $err }} <br></p>
+@endforeach --}}
+{{-- <script src="{{ asset('assets/js/update_image.js') }}"></script> --}}

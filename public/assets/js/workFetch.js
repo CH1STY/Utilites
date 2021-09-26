@@ -1,3 +1,4 @@
+   
 async function fetchWork(url, myModal) {
     let response = await FetchRequest(url);
     console.log("called");

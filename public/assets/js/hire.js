@@ -30,7 +30,7 @@ async function SendRequest(volunteerId,url,gets) {
     let data = {
         volunteerId: volunteerId,
         _token: document.getElementById("_token").value,
-        details: `Work Type: ${gets.worktype} Work Area: ${gets.area}`,
+        details: `Work Type: ${gets.worktype} <br> Work Area: ${gets.area}`,
     };
     const response = await fetch(url, {
         method: "POST",

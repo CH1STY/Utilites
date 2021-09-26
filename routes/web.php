@@ -32,6 +32,8 @@ Route::post('registration', 'RegistrationController@store')->name('registration'
 
 Route::post('update/image','RegistrationController@updateImage')->name('update_image');
 
+Route::post('change/password','UserController@changePassword')->name('change.password');
+
 
 
 Route::get('user/edit', 'UserController@editView')->name('user.edit');
@@ -48,4 +50,4 @@ Route::post('volunteer/info/update','VolunteerController@update')->name('volunte
 Route::post('work/request/{id}','WorkRequestController@requestWork')->name('work.request');
 Route::post('work/fetchRequest/{v_id}','WorkRequestController@fetchWork')->name('work.fetch');
 
-//--------------------
+//--------------
