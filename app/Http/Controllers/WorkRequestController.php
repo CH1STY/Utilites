@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\WorkRequest;
+use App\VolunteerInformation;
 use App\User;
 class WorkRequestController extends Controller
 {
@@ -27,6 +28,7 @@ class WorkRequestController extends Controller
             $newWorkRequest->user_id = $id;
             $newWorkRequest->volunteer_id = $request->volunteerId;
             $newWorkRequest->details = "<strong>".$user->username."</strong>"." is Looking to Hire your<br>".$request->details;
+            $newWorkRequest->status = "waiting";
             $newWorkRequest->expired_at = date("Y-m-d H:i:s", time() + 60);
             if($newWorkRequest->save())
             {
@@ -79,10 +81,52 @@ class WorkRequestController extends Controller
         $workRequest = WorkRequest::find($id);
 
         if($workRequest){
+            if($workRequest->status=="accepted")
+            {
+                return response()->json("accepted");
+            }
             return response()->json(true);
         }else{
             return response()->json(false);
         }
+    }
+
+    public function acceptReqeust(Request $request, $id)
+    {
+       $workRequest = WorkRequest::find($id);
+
+       if($workRequest)
+       {
+         $workRequest->status = "accepted";
+         if($workRequest->save())
+         {
+            $volunteer  = VolunteerInformation::where('userid',$workRequest->volunteer_id)->first();
+            $volunteer->availablity = "no";
+            if($volunteer->save())
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
+         }
+         else
+         {
+             return false;
+         }
+       }
+       else{
+           return false;
+       }
+
+    }
+
+    public function ongoingView(Request $request,$id)
+    {
+        echo $id;
     }
 
     

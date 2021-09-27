@@ -1,7 +1,7 @@
 <h3 class="text-center">Volunteer Work Profile</h3>
 
 @if (session('msg'))
-    <h4 class="text-center text-success">{{ session('msg') }}</h4>
+<h4 class="text-center text-success">{{ session('msg') }}</h4>
 
 @endif
 <input type="hidden" id="_token" value={{ csrf_token() }}>
@@ -55,19 +55,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">JOB OFFER!!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="smallCls" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('update_image') }}" enctype="multipart/form-data" method="post">
+                        
                         <h5 class="text-uppercase text-success" id="work_details">
 
                         </h5>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Accept</button>
+                    <button type="submit" id="acceptBtn" class="btn btn-primary">Accept</button>
                     <button type="button" id="clsBtn" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>

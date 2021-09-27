@@ -27,6 +27,7 @@ function changeTimeout(timeout) {
 
 function closeRequestModal() {
     timerStat = "stop";
+   
 }
 
 async function cancelRequest(id) {
@@ -55,9 +56,15 @@ function countDownControll(id) {
 
     var timer = setInterval(function () {
         let myClock = document.getElementById("clock");
-
+        myClock.innerHTML = " ";
         isRequestExist(id).then((res) => {
-            if (!res) {
+            if(res==="accepted")
+            {
+               
+                clearInterval(timer);
+                window.location.replace(`work/ongoing/${id}`);
+            }
+            else if (!res) {
                 myClock.innerHTML = `<span class="h2 fw-bold text-warning"> Request Declined by Volunteer </span>`;
                 clearInterval(timer);
             }
@@ -71,13 +78,13 @@ function countDownControll(id) {
             clearInterval(timer);
             document.getElementById(
                 "clock"
-            ).innerHTML = `<span class="h2 fw-bold text-uppercase text-danger"> Request Declined </span>`;
+            ).innerHTML = `<span class="h2 fw-bold text-uppercase text-danger"> Request Expired Try Again </span>`;
             cancelRequest(id);
         } else if (timeout < 0) {
             clearInterval(timer);
             document.getElementById(
                 "clock"
-            ).innerHTML = `<span class="h2 fw-bold text-uppercase text-danger"> Request Declined </span>`;
+            ).innerHTML = `<span class="h2 fw-bold text-uppercase text-danger"> Request Expired Try Again</span>`;
             cancelRequest(id);
         }
     }, 1000);

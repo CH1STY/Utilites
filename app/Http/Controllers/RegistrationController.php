@@ -7,6 +7,7 @@ use App\VolunteerInformation;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegRequest;
 use App\Http\Requests\PhotoeditRequest;
+
 class RegistrationController extends Controller
 {
     public function index()
@@ -42,17 +43,26 @@ class RegistrationController extends Controller
                 $voluterInfo->longitude = "0.0";
                 $voluterInfo->availablity = "off";
             }
+
+
             $user->national_id = $request->national_id;
             $user->date_of_birth = $request->date_of_birth;
             $user->image  = "x";
             if ($user->save()) {
-                $user->image="user".$user->id.".jpg";
+                $user->image = "user" . $user->id . ".jpg";
                 $user->save();
-                $voluterInfo->userid =  $user->id;
-                $voluterInfo->save();
+                if ($user->usertype == "Volunteer") {
+
+                    $voluterInfo->userid = $user->id;
+                    $voluterInfo->save();
+                }
                 $file->move('assets/images/users/', 'user' . $user->id . '.jpg');
                 $request->session()->flash('msg', 'Registration is successful! Please login...');
                 return redirect()->route('login');
+
+                foreach ($request as &$data) {
+                    $data->direction = 0;
+                }
             }
             return Back();
         }

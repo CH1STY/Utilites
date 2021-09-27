@@ -43,5 +43,5 @@
 </script>
 
 @error('password')
-    <span style="color: red">{{ $message }}</span>
+<span style="color: red">{{ $message }}</span>
 @enderror

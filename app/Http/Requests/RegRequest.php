@@ -24,16 +24,16 @@ class RegRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users|min:3|max:30|regex:/[a-zA-Z0-9]/i',
-            'password' => 'required|min:3|max:8',
-            'email' => 'required|unique:users|email:rfc|max:50|min:10',
+            'username' => 'required|unique:users|min:5|max:30|regex:/[a-zA-Z0-9]/i',
+            'password' => 'required|min:6|max:30',
+            'email' => 'required|unique:users|email|max:50|min:10',
             'first_name' => 'required|min:3|max:30|regex:/[a-zA-Z]/i',
             'last_name' => 'required|min:3|max:30|regex:/[a-zA-Z]/i',
             'date_of_birth' => 'required',
             'gender' => 'required|in:male,female,other',
             'address' => 'required',
             'phone' => 'required|regex:/(01)[0-9]{9}/',
-            'usertype' => 'required',
+            'usertype' => 'required|in:User,Volunteer',
             'national_id' => 'required|digits:9',
             'myfile' => 'required|mimes:jpeg,png,jpg,gif,svg|max:6048',
         ];
@@ -44,19 +44,20 @@ class RegRequest extends FormRequest
         return [
             'username.required' => "Username can't be empty...",
             'username.unique' => "Username has already been taken...",
-            'username.min' => "Username must be minimum 3 characters...",
+            'username.min' => "Username must be minimum 5 characters...",
             'username.max' => "Username can't exceed 30 characters...",
             'username.regex' => "Username must be in alphanumeric...",
 
             'password.required' => "Password can't be empty...",
-            'password.min' => "Password must be minimum 3 characters...",
-            'password.max' => "Password can't exceed 8 characters...",
+            'password.min' => "Password must be minimum 6 characters...",
+            'password.max' => "Password can't exceed 30 characters...",
 
             'email.required' => "Email can't be empty...",
+            'email.email' => "Email format is invalid...",
             'email.unique' => "Email has already been taken...",
             'email.min' => "Email must be minimum 10 characters...",
             'email.max' => "Email can't exceed 50 characters...",
-            'email.email' => "Email format is invalid...",
+          
 
 
             'first_name.required' => "First Name can't be empty...",
@@ -80,7 +81,8 @@ class RegRequest extends FormRequest
             'address.required' => "Address can't be empty...",
 
             'usertype.required' => "User Type category must be selected...",
-            
+            'usertype.in'  => "Select Usertype: User or Volunteer",
+
             'national_id.required' => "NID Number must be filled up...",
             'national_id.digits' => "NID Number is invalid...",
 

@@ -1,66 +1,68 @@
 @extends('dashboard.dashboardlayout')
 
 @section('content')
-    {{-- to fix the navbar area --}}
-    <div class="container-fluid top-container">
+{{-- to fix the navbar area --}}
+<div class="container-fluid top-container">
 
-        {{-- imports --}}
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-            crossorigin="" />
+    {{-- imports --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
 
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-                integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-                crossorigin=""></script>
-        {{-- imports --}}
-        <style>
-            #mapid {
-                height: 350px;
-                width: 80%;
-            }
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    {{-- imports --}}
+    <style>
+        #mapid {
+            height: 350px;
+            width: 80%;
+        }
+    </style>
 
-        </style>
-
-        <input type="hidden" id="_token" value={{ csrf_token() }}>
-
-
-        <h6> Search Volunteer </h6>
-        <div id="noPosition" class="my-5" style="display: none">
-            <div class="text-center">
-                <h3 class="text-danger">Location not authorized. Please check your location permissions settings.</h3>
-
-            </div>
-        </div>
+    <input type="hidden" id="_token" value={{ csrf_token() }}>
 
 
-        <div class="d-flex justify-content-center">
-            <div id="mapid"></div>
+    <h6> Search Volunteer </h6>
+    <div id="noPosition" class="my-5" style="display: none">
+        <div class="text-center">
+            <h3 class="text-danger">Location not authorized. Please check your location permissions settings.</h3>
 
         </div>
+    </div>
 
-        {{-- Request Waiting Modal --}}
-        <div class="modal fade" id="requestWaitingModal" tabindex="-1" aria-labelledby="requestWaitingModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-secondary text-success text-uppercase" id="requestWaitingModalLabel">Waiting for Volunteer to Accept</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="h3 text-center fw-bold" id="clock"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" onclick="closeRequestModal()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+
+    <div class="d-flex justify-content-center">
+        <div id="mapid"></div>
+
+    </div>
+
+    {{-- Request Waiting Modal --}}
+    <div class="modal fade" id="requestWaitingModal" tabindex="-1" aria-labelledby="requestWaitingModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-secondary text-success text-uppercase" id="requestWaitingModalLabel">
+                        Waiting for Volunteer to Accept</h5>
+                    <button type="button" onclick="closeRequestModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="h3 text-center fw-bold" id="clock"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="closeRequestModal()" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-        {{-- Request Waiting Modal Ends --}}
+    </div>
+    {{-- Request Waiting Modal Ends --}}
 
-        {{-- Scripts --}}
+    {{-- Scripts --}}
 
-        <script>
-            function getLocation() {
+    <script>
+        function getLocation() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition, positionNotFound);
                 } else {}
@@ -86,11 +88,11 @@
             function requestUser(volunteerId) {
                 postRequestUser(volunteerId, '{{ route('work.request', ['id' => session('userid')]) }}')
             }
-        </script>
+    </script>
 
 
-        <script>
-            function myLocationSetter(latitude, longitude) {
+    <script>
+        function myLocationSetter(latitude, longitude) {
                 var mymap = L.map('mapid').setView([latitude, longitude], 13);
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                     attribution: 'OVMS',
@@ -111,11 +113,11 @@
 
 
             }
-        </script>
+    </script>
 
 
-        <script src="{{ asset('assets/js/hire.js') }}"></script>
+    <script src="{{ asset('assets/js/hire.js') }}"></script>
 
-        {{-- end of scripts --}}
-    </div>
+    {{-- end of scripts --}}
+</div>
 @endsection
