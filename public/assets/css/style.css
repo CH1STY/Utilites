@@ -101,7 +101,46 @@ body {
     height: 50px;
 }
 .top-container {
-    margin-top: 5rem !important;
+    margin-top: 7rem !important;
+}
+
+#messages{
+    max-height: 55vh;
+    overflow-y: scroll !important;
+}
+
+.list-group-item {
+    margin: 5px;
+    border: 3px solid rgb(102, 94, 94) !important;
+    border-radius: 20px 20px 20px 2px !important;
+}
+
+.list-group-item.sender {
+    border: 3px solid rgb(15, 109, 160) !important;
+    border-radius: 20px 20px 2px 20px !important;
+}
+/* ::-webkit-scrollbar {
+    width: 10px;
+   
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border: 2px solid blue;
+    border-radius: 30px 30px 30px 30px;
+
+} */
+
+.chat-card {
+    min-height: 80vh;
+    max-height: 80vh;
+    border: 1px solid grey;
+    border-radius: 8%;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 1050px) {
@@ -159,6 +198,15 @@ footer .card {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.receiver {
+    background-color: grey;
+}
+
+.sender {
+    background-color: rgb(15, 109, 160, 0.85);
+    text-align: right;
 }
 
 @media screen and (max-width: 768px) {

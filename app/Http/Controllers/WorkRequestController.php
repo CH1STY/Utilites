@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\WorkRequest;
 use App\VolunteerInformation;
 use App\User;
+use App\WorkChat;
+use App\Chat;
+
 class WorkRequestController extends Controller
 {
     public function requestWork(Request $request,$id)
@@ -126,7 +129,29 @@ class WorkRequestController extends Controller
 
     public function ongoingView(Request $request,$id)
     {
-        echo $id;
+        
+        $workRequest = WorkRequest::find($id);
+
+        if($workRequest)
+        {
+            $workChat = WorkChat::where('work_id',$workRequest->id)->first();
+
+            if($workChat)
+            {
+
+            }
+            else
+            {
+                $workChat= new WorkChat;
+                $workChat->work_id = $workRequest->id;
+                $workChat->chat_id = "C".$workRequest->id;
+                $workChat->save();
+            }
+
+            return view("work.ongoing")->with('id',$id);
+        }
+        
+        return redirect()->route('dashboard');
     }
 
     
