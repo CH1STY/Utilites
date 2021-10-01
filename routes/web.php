@@ -62,5 +62,8 @@ Route::get('work/remove/{id}','WorkRequestController@removeRequest')->name('work
 Route::get('work/accept/{id}','WorkRequestController@acceptReqeust')->name('work.accept');
 Route::get('work/ongoing/{id}','WorkRequestController@ongoingView')->name('work.ongoing');
 
+Route::get('work/chat/fetch/{workId}/{updatedAt}','WorkRequestController@chatFetch')->name('work.chat.fetch');
+
+Route::post('work/chat/post/{workId}','WorkRequestController@chatSend')->name('work.chat.post');
 
 //--------------
