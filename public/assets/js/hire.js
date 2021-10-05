@@ -117,6 +117,8 @@ async function SendRequest(volunteerId, url, gets) {
         volunteerId: volunteerId,
         _token: document.getElementById("_token").value,
         details: `Work Type: ${gets.worktype} <br> Work Area: ${gets.area}`,
+        longitude: longitudeGlob,
+        latitude: latitudeGlob,
     };
     const response = await fetch(url, {
         method: "POST",

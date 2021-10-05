@@ -29,9 +29,9 @@ Route::get('registration', 'RegistrationController@index')->name('registration')
 
 Route::post('registration', 'RegistrationController@store')->name('registration');
 
-Route::post('update/image','RegistrationController@updateImage')->name('update_image');
+Route::post('update/image', 'RegistrationController@updateImage')->name('update_image');
 
-Route::post('change/password','UserController@changePassword')->name('change.password');
+Route::post('change/password', 'UserController@changePassword')->name('change.password');
 
 
 
@@ -42,28 +42,30 @@ Route::post('user/edit', 'UserController@update');
 
 Route::get('logout', 'LogoutController@index')->name('logout');
 
-Route::post('volunteer/info/update','VolunteerController@update')->name('volunteer.update');
+Route::post('volunteer/info/update', 'VolunteerController@update')->name('volunteer.update');
 
 
 
 Route::middleware(['isWorkOngoing'])->group(function () {
-    
+
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-    Route::get('search','SearchController@index')->name('search');
+    Route::get('search', 'SearchController@index')->name('search');
     //Work Request routes
 });
 
-Route::post('work/request/{id}','WorkRequestController@requestWork')->name('work.request');
-Route::post('work/fetchRequest/{v_id}','WorkRequestController@fetchWork')->name('work.fetch');
+Route::post('work/request/{id}', 'WorkRequestController@requestWork')->name('work.request');
+Route::post('work/fetchRequest/{v_id}', 'WorkRequestController@fetchWork')->name('work.fetch');
 
-Route::get('work/isExist/{id}','WorkRequestController@isExist')->name('work.isExist');
-Route::get('work/remove/{id}','WorkRequestController@removeRequest')->name('work.remove');
+Route::get('work/isExist/{id}', 'WorkRequestController@isExist')->name('work.isExist');
+Route::get('work/remove/{id}', 'WorkRequestController@removeRequest')->name('work.remove');
 
-Route::get('work/accept/{id}','WorkRequestController@acceptReqeust')->name('work.accept');
-Route::get('work/ongoing/{id}','WorkRequestController@ongoingView')->name('work.ongoing');
+Route::get('work/accept/{id}', 'WorkRequestController@acceptReqeust')->name('work.accept');
+Route::get('work/ongoing/{id}', 'WorkRequestController@ongoingView')->name('work.ongoing');
 
-Route::get('work/chat/fetch/{workId}/{updatedAt}','WorkRequestController@chatFetch')->name('work.chat.fetch');
+Route::get('work/chat/fetch/{workId}/{updatedAt}', 'WorkRequestController@chatFetch')->name('work.chat.fetch');
 
-Route::post('work/chat/post/{workId}','WorkRequestController@chatSend')->name('work.chat.post');
+Route::post('work/chat/post/{workId}', 'WorkRequestController@chatSend')->name('work.chat.post');
 
 //--------------
+Route::get('work/payment', 'PaymentController@payment')->name('payment.payment');
+Route::get('work/payment/review', 'ReviewController@review')->name('review.review');

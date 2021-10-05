@@ -31,13 +31,13 @@
                     <div class="row mt-2">
                         <div class="col-md-6"><label class="labels">First Name</label>
                             <input type="text" name="first_name" class="form-control" placeholder="first name"
-                                value="{{ $user->first_name }}">
+                                value="{{ (old('first_name') ? old('first_name') : $user->first_name) }}">
                             @error('first_name')
                             <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-6"><label class="labels">Last Name</label>
-                            <input type="text" name="last_name" class="form-control" value="{{ $user->last_name }}"
+                            <input type="text" name="last_name" class="form-control" value="{{ (old('last_name') ? old('last_name') : $user->last_name) }}"
                                 placeholder="last name">
                             @error('last_name')
                             <span style="color: red">{{ $message }}</span>
@@ -58,21 +58,21 @@
                         </div>
                         <div class="col-md-12"><label class="labels">Phone</label>
                             <input type="text" name="phone" class="form-control" placeholder="enter phone"
-                                value="{{ $user->phone }}">
+                                value="{{ (old('phone') ? old('phone') : $user->phone) }}">
                             @error('phone')
                             <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-12"><label class="labels">Address</label>
                             <input type="text" name="address" class="form-control" placeholder="enter address"
-                                value="{{ $user->address }}">
+                                value="{{ (old('address') ? old('address') : $user->address) }}">
                             @error('address')
                             <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="col-md-12"><label class="labels">Gender</label>
                             <input type="text" name="gender" class="form-control" placeholder="enter gender"
-                                value="{{ $user->gender }}">
+                                value="{{ (old('gender') ? old('gender') : $user->gender) }}">
                             @error('gender')
                             <br><span style="color: red">{{ $message }}</span>
                             @enderror

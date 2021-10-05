@@ -19,9 +19,7 @@ async function ChatFetcher(workId, senderId, isFromSend = false) {
             allData = data;
         });
 
-    
     chats = allData[3];
-
 
     let messageDiv = document.getElementById("messages");
     messageDiv.innerHTML = "";
@@ -33,8 +31,7 @@ async function ChatFetcher(workId, senderId, isFromSend = false) {
     });
 
     updatedAt = allData[2];
-    if(chat_prevLength != chats.length)
-    {
+    if (chat_prevLength != chats.length) {
         messageDiv.scrollTo(0, messageDiv.scrollHeight);
         chat_prevLength = chats.length;
     }
@@ -42,10 +39,10 @@ async function ChatFetcher(workId, senderId, isFromSend = false) {
 
 async function sendMessage(workId, senderId) {
     let button = document.getElementById("sendButton");
-    button.disabled = true;
-    let message = await document.getElementById("message");
+    // button.disabled = true;
+    let message = document.getElementById("message");
 
-    let data = await {
+    let data = {
         message: message.value,
         _token: document.getElementById("_token").value,
     };

@@ -104,11 +104,10 @@ body {
     margin-top: 7rem !important;
 }
 
-#messages{
+#messages {
     min-height: 50vh;
     max-height: 50vh;
     overflow-y: scroll;
-
 }
 
 .list-group-item {
@@ -118,12 +117,12 @@ body {
 }
 
 .list-group-item.sender {
-    border: 3px solid rgb(15, 109, 160) !important;
+    border: 3px solid rgb(85, 160, 201) !important;
     border-radius: 20px 20px 2px 20px !important;
+    background-color: rgb(97, 207, 226);
 }
 ::-webkit-scrollbar {
     width: 10px;
-   
 }
 
 ::-webkit-scrollbar-track {
@@ -134,16 +133,18 @@ body {
     background: #888;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 30px 30px 30px 30px;
+}
 
+#name-area {
+    background-color: rgb(203, 237, 250);
 }
 
 .chat-card {
     min-height: 80vh;
     max-height: 80vh;
-    border: 1px solid grey;
+    border: 2px solid grey;
     border-radius: 8%;
     overflow: hidden;
-    overflow-y: scroll;
 }
 
 @media screen and (max-width: 1050px) {

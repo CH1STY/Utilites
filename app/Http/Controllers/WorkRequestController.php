@@ -9,6 +9,7 @@ use App\VolunteerInformation;
 use App\User;
 use App\WorkChat;
 use App\Chat;
+use App\Http\Requests\ChatRequest;
 
 class WorkRequestController extends Controller
 {
@@ -137,7 +138,7 @@ class WorkRequestController extends Controller
 
         if ($workRequest) {
             $chat = Chat::where('chat_id', "C" . $workRequest->id)
-                // ->where('updated_at', ">=", $updatedAt)
+                //->where('updated_at', ">=", $updatedAt)
                 ->get();
 
 
@@ -149,41 +150,33 @@ class WorkRequestController extends Controller
         }
     }
 
-    public function chatSend(Request $request, $workId)
+    public function chatSend(ChatRequest $request, $workId)
     {
         $senderId = $request->session()->get('userid');
         $workRequest = WorkRequest::where('id', $workId)
             ->orWhere('user_id', $request->session()->get('userid'))
             ->orWhere('volunteer_id', $request->session()->get('userid'))
             ->first();
-        if($workRequest)
-        {
-            if($workRequest->user_id==$senderId)
-            {
+        if ($workRequest) {
+            if ($workRequest->user_id == $senderId) {
                 $reciever_id = $workRequest->volunteer_id;
-            }
-            else
-            {
+            } else {
                 $reciever_id = $workRequest->user_id;
             }
 
-            
+
             $chat = new Chat;
-            $chat->chat_id = "C".$workRequest->id;
+            $chat->chat_id = "C" . $workRequest->id;
             $chat->sender_id = $senderId;
             $chat->reciever_id = $reciever_id;
             $chat->message = $request->message;
-            
-            if($chat->save()){
-                return response()->json(array($chat,date('Y-m-d H:i:s')));
-            }
-            else
-            {
+
+            if ($chat->save()) {
+                return response()->json(array($chat, date('Y-m-d H:i:s')));
+            } else {
                 return false;
             }
-
-        }
-        else{
+        } else {
             return false;
         }
     }

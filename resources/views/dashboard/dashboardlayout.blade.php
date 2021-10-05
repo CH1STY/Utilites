@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/sidenav.css') }}">
+
     <title>OVMS</title>
 </head>
 
