@@ -33,7 +33,7 @@ class SearchController extends Controller
             });";
 
             $outputScript .= "L.marker([" . floatval($volunteer->latitude) . ", " . floatval($volunteer->longitude) . "], {icon: myIcon" . $volunteer->id . "}).addTo(mymap)
-            .bindPopup('<p class=\"text-center text-uppercase fw-bold text-success\">" . $volunteer->user->username . "</p><button onclick=\"requestUser(" . $volunteer->user->id. ")\" class=\"btn btn-primary\"> Hire Volunteer </button>')
+            .bindPopup('<p class=\"text-center text-uppercase fw-bold text-success\">" . $volunteer->user->username . "</p><button onclick=\"requestUser(" . $volunteer->user->id . ")\" class=\"btn btn-primary\"> Hire Volunteer </button>')
             .openPopup();";
         }
 

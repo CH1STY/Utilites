@@ -6,72 +6,120 @@
 @endif
 <input type="hidden" id="_token" value={{ csrf_token() }}>
 
-<form class="w-50 m-auto" method="post" action="{{ route('volunteer.update') }}">
+<form class="w-75 m-auto" method="post" action="{{ route('volunteer.update') }}">
     @csrf
 
-    <div class="">
-        <label for=" worktype" class="fs-5">WorkType</label>
-        <select name="worktype" class="form-select" required id="worktype">
+    <div class="row">
+        <div class="col-lg-8">
 
-            <option value="Heavy-Weight Groceries">Heavy-Weight Groceries: (In
-                between 6-15 kg)</option>
-            <option value="Heavy- Weight Delivering Parcel">Heavy- Weight Delivering Parcel: (In
-                between 6-15 kg)</option>
-            <option value="Heavy-Weight Collecting Parcel">Heavy-Weight Collecting Parcel: (In
-                between 6-15 kg)</option>
-            <option value="Heavy-Weight Collecting Others">Heavy-Weight Collecting Others: (In
-                between 6-15 kg)</option>
-            <option value="Moderate-Weight Groceries">Moderate-Weight Groceries: (In
-                between 2-6 kg) </option>
-            <option value="Moderate- Weight Delivering Parcel">Moderate- Weight Delivering
-                Parcel: (In
-                between 2-6 kg)</option>
-            <option value="Moderate-Weight Collecting Parcel">Moderate-Weight Collecting Parcel:
-                (In
-                between 2-6 kg)</option>
-            <option value="Moderate-Weight Collecting Others">Moderate-Weight Collecting Others:
-                (In
-                between 2-6 kg</option>
-            <option value="Lite-Weight Groceries">Lite-Weight Groceries: (In
-                between 0-2 kg)</option>
-            <option value="Lite- Weight Delivering Parcel">Lite- Weight Delivering Parcel: (In
-                between 0-2 kg)</option>
-            <option value="Lite-Weight Collecting Parcel">Lite-Weight Collecting Parcel: (In
-                between 0-2 kg)</option>
-            <option value="Lite-Weight Collecting Medical Supplement">Lite-Weight Collecting
-                Medical Supplement </option>
-            <option value="Lite-Weight Collecting Others">Lite-Weight Collecting Others: (In
-                between 0-2 kg</option>
-        </select>
-    </div>
-    <p class="text-justify py-1 small">Per kg 50TK in current town where company is located, Per kg 130TK charge
-        outside
-        the
-        city.</p>
-    <div class="">
-        <label for=" area" class="fs-5">Area</label>
-        <select class="form-select" name="work_area" required id="">
-            <option value="dhaka">Dhaka</option>
-            <option value="chittagong">Chittagong</option>
-            <option value="shylhet">Sylhet</option>
-        </select>
-    </div>
-    <br>
-    <div class="">
-        <label for=" area" class="fs-5">Availability</label>
-        <select class="form-select" name="availablity" required id="">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
-    </div>
+            <div class="">
+                <br><br>
+                <label for=" worktype" class="fs-5">WorkType</label>
+                <select name="worktype" class="form-select" required id="worktype">
 
-    <input type="hidden" id="longitude" name="longitude">
-    <input type="hidden" id="latitude" name="latitude">
-    <div id="submitBtn" class="text-center my-3">
-        <button type="submit" class="btn btn-primary mx-3 px-5">Update</button>
+                    <option value="Heavy-Weight Groceries">Heavy-Weight Groceries: (In
+                        between 6-15 kg)</option>
+                    <option value="Heavy- Weight Delivering Parcel">Heavy- Weight Delivering Parcel: (In
+                        between 6-15 kg)</option>
+                    <option value="Heavy-Weight Collecting Parcel">Heavy-Weight Collecting Parcel: (In
+                        between 6-15 kg)</option>
+                    <option value="Heavy-Weight Collecting Others">Heavy-Weight Collecting Others: (In
+                        between 6-15 kg)</option>
+                    <option value="Moderate-Weight Groceries">Moderate-Weight Groceries: (In
+                        between 2-6 kg) </option>
+                    <option value="Moderate- Weight Delivering Parcel">Moderate- Weight Delivering
+                        Parcel: (In
+                        between 2-6 kg)</option>
+                    <option value="Moderate-Weight Collecting Parcel">Moderate-Weight Collecting Parcel:
+                        (In
+                        between 2-6 kg)</option>
+                    <option value="Moderate-Weight Collecting Others">Moderate-Weight Collecting Others:
+                        (In
+                        between 2-6 kg</option>
+                    <option value="Lite-Weight Groceries">Lite-Weight Groceries: (In
+                        between 0-2 kg)</option>
+                    <option value="Lite- Weight Delivering Parcel">Lite- Weight Delivering Parcel: (In
+                        between 0-2 kg)</option>
+                    <option value="Lite-Weight Collecting Parcel">Lite-Weight Collecting Parcel: (In
+                        between 0-2 kg)</option>
+                    <option value="Lite-Weight Collecting Medical Supplement">Lite-Weight Collecting
+                        Medical Supplement </option>
+                    <option value="Lite-Weight Collecting Others">Lite-Weight Collecting Others: (In
+                        between 0-2 kg</option>
+                </select>
+            </div>
+            <p class="text-justify py-1 small">Per kg 50TK in current town where company is located, Per kg 130TK charge
+                outside
+                the
+                city.</p>
+            <div class="">
+                <label for=" area" class="fs-5">Area</label>
+                <select class="form-select" name="work_area" required id="">
+                    <option value="dhaka">Dhaka</option>
+                    <option value="chittagong">Chittagong</option>
+                    <option value="shylhet">Sylhet</option>
+                </select>
+            </div>
+            <br>
+            <div class="">
+                <label for=" area" class="fs-5">Availability</label>
+                <select class="form-select" name="availablity" required id="">
+                    <option value="yes" @if($volun->availablity=='yes') selected @endif>Yes</option>
+                    <option value="no"  @if($volun->availablity=='no') selected @endif>No</option>
+                </select>
+            </div>
+
+            <input type="hidden" id="longitude" name="longitude">
+            <input type="hidden" id="latitude" name="latitude">
+
+            <div id="submitBtn" class="text-center my-3">
+                <button type="submit" class="btn btn-primary mx-3 px-5">Update</button>
+
+            </div>
+        </div>
+
+        {{-- new --}}
+        <div class="col-lg-4">
+            <div class="fs-5">
+                <p class="text-center">Current Profile</p>
+            </div>
+            <link rel="stylesheet" href="{{ asset('assets/css/cprofile.css') }}" />
+            <div class="m-3">
+                <div class="card-body">
+
+                    <div class="">
+                        <div class="d-flex flex-row justify-content-between p-3 adiv text-black"> <i
+                                class="fas fa-chevron-left"></i>
+                            <span class="pb-3">{{ session('username') }}</span> <i class="fas fa-times"></i> </div>
+                    </div>
+                    <div class="chat ml-2 p-3">
+                        <div class="col-md-12"><label class="labels">Work Type</label>
+                            <input disabled="disabled" type="text" name="worktype" class="form-control"
+                                value="{{$volun->worktype}}">
+                        </div>
+                    </div>
+
+                    <div class="chat ml-2 p-3">
+                        <div class="col-md-12"><label class="labels">Work Area</label>
+                            <input disabled="disabled" type="text" name="work_area" class="form-control"
+                                value="{{ $user->email }}">
+                        </div>
+                    </div>
+                    <div class="chat ml-2 p-3">
+                        <div class="col-md-12"><label class="labels">Availability</label>
+                            <input disabled="disabled" type="text" name="availability" class="form-control"
+                                value="{{ $volun->availablity }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </form>
+
+
+
 
 <div class="container-fluid text-center">
 

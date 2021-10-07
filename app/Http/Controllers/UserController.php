@@ -16,6 +16,7 @@ class UserController extends Controller
         return view('user.edit')->with('user', $user);
     }
 
+    
     public function update(ProfileUpdateRequest $request)
     {
 

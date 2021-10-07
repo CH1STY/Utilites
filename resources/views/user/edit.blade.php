@@ -37,7 +37,8 @@
                             @enderror
                         </div>
                         <div class="col-md-6"><label class="labels">Last Name</label>
-                            <input type="text" name="last_name" class="form-control" value="{{ (old('last_name') ? old('last_name') : $user->last_name) }}"
+                            <input type="text" name="last_name" class="form-control"
+                                value="{{ (old('last_name') ? old('last_name') : $user->last_name) }}"
                                 placeholder="last name">
                             @error('last_name')
                             <span style="color: red">{{ $message }}</span>

@@ -213,6 +213,10 @@ footer .card {
     text-align: right;
 }
 
+.leaflet-routing-container {
+    display:none;
+}
+
 @media screen and (max-width: 768px) {
     .small-screen-padding {
         padding: 5%;

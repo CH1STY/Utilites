@@ -19,6 +19,8 @@ class CreateWorkRequestsTable extends Migration
             $table->integer("volunteer_id");
             $table->string("details");
             $table->string("status");
+            $table->string('latitude');
+            $table->string('longitude');
             $table->datetime("expired_at");
             $table->timestamps();
         });

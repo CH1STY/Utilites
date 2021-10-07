@@ -41,14 +41,17 @@
             outside
             the
             city.</p>
+            
         <label for="forWork" class="fs-5">Area</label>
         <select class="form-select" name="area" id="">
             <option value="dhaka">Dhaka</option>
             <option value="chittagong">Chittagong</option>
             <option value="shylhet">Sylhet</option>
         </select>
-        <div class="text-center m-2">
 
+
+
+        <div class="text-center m-2">
             <button type="submit" class="btn btn-primary">Search Volunteer</button>
         </div>
     </form>

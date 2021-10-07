@@ -42,8 +42,9 @@ Route::post('user/edit', 'UserController@update');
 
 Route::get('logout', 'LogoutController@index')->name('logout');
 
-Route::post('volunteer/info/update', 'VolunteerController@update')->name('volunteer.update');
+Route::post('volunteer/info/view/update', 'VolunteerController@update')->name('volunteer.update');
 
+Route::get('volunteer/info/view', 'VolunteerController@view')->name('volunteer.view');
 
 
 Route::middleware(['isWorkOngoing'])->group(function () {
