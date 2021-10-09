@@ -129,8 +129,21 @@ class WorkRequestController extends Controller
                 }
     
                 $volunteerInfo = VolunteerInformation::where('userid', $workRequest->volunteer_id)->first();
+
+
+                $chatName = "";
+                $isUser = false;
+
+                if($workRequest->user->id == $request->session()->get('userid')) {
+                    $chatName = $workRequest->volunteer->username;
+                }
+                else
+                {
+                    $chatName = $workRequest->user->username;
+                    $isUser = true;
+                }
     
-                return view("work.ongoing")->with('id', $id)->with('workRequest',$workRequest)->with('volunteer',$volunteerInfo);
+                return view("work.ongoing")->with('id', $id)->with('workRequest',$workRequest)->with('volunteer',$volunteerInfo)->with('chatName',$chatName)->with('isUser',$isUser);
 
             }
         }
@@ -152,9 +165,8 @@ class WorkRequestController extends Controller
             $chat = Chat::where('chat_id', "C" . $workRequest->id)
                 //->where('updated_at', ">=", $updatedAt)
                 ->get();
-
-
-            $jsonArray = array($workId, $updatedAt, date('Y-m-d H:i:s'), $chat);
+            $status = $workRequest->status;
+            $jsonArray = array($workId, $updatedAt, date('Y-m-d H:i:s'), $chat,$status);
 
             return response()->json($jsonArray);
         } else {
@@ -190,6 +202,23 @@ class WorkRequestController extends Controller
             }
         } else {
             return false;
+        }
+    }
+
+    public function workFinish(Request $request)
+    {
+        if($request->type=='complete') {
+            $workRequest = WorkRequest::find($request->workId);
+            $workRequest->status = "completed";
+            $workRequest->save();
+            return response()->json('WorkRequest Complete');
+        }
+        if($request->type=='cancel') {
+            
+            $workRequest = WorkRequest::find($request->workId);
+            $workRequest->status = "canceled";
+            $workRequest->save();
+            return response()->json('WorkRequest canceled');
         }
     }
 }

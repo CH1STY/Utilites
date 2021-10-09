@@ -70,3 +70,6 @@ Route::post('work/chat/post/{workId}', 'WorkRequestController@chatSend')->name('
 //--------------
 Route::get('work/payment', 'PaymentController@payment')->name('payment.payment');
 Route::get('work/payment/review', 'ReviewController@review')->name('review.review');
+
+//--------------
+Route::post('work/finish', 'WorkRequestController@workFinish')->name('work.finish');

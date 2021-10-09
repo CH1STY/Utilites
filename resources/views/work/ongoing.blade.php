@@ -35,10 +35,15 @@
 
             </div>
             <div id="mapid"></div>
+            <div class="w-100">
+                <button onclick="actionButton('complete',{{request()->id}})" class="btn btn-outline-success m-4">Completed</button>
+                <button onclick="actionButton('cancel',{{request()->id}})" class="btn btn-outline-danger m-4 float-right">Cancel</button>
+
+            </div>
         </div>
         <div class="col-lg-4">
             <div class="card chat-card" id="name-area">
-                <h4 class="text-center" id="name-area">{{ session('username') }}</h4>
+                <h4 class="text-center" id="name-area">{{$chatName}}</h4>
                 <ul class="list-group list-group-flush pt-3">
                     <div class="" id="messages">
 

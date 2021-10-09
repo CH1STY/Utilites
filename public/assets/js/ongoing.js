@@ -4,6 +4,41 @@ var firstTime = true;
 let time = 0;
 let chat_prevLength = 0;
 
+async function actionButton(type, workId) {
+    if (confirm(`Are you sure you want to mark this as ${type}?`)) {
+        url = "/work/finish";
+        data = {
+            type,
+            _token: document.getElementById("_token").value,
+            workId,
+        };
+
+        await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": data._token,
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                if (type == "complete") {
+                    window.location = "/dashboard";
+                    // window.location = '/payment'
+                } else {
+                    window.location = "/dashboard";
+                }
+            });
+
+        // alert('confirmed');
+    } else {
+        // alert('not confirmed');
+    }
+}
+
 async function startChatFetching(workId, senderId) {
     ChatFetcher(workId, senderId);
     timer = setInterval(function () {
@@ -18,7 +53,14 @@ async function ChatFetcher(workId, senderId, isFromSend = false) {
         .then((data) => {
             allData = data;
         });
-
+    if (allData[4] != "accepted") {
+        if (allData[4] == "complete") {
+            window.location = "/dashboard";
+            // window.location = '/payment'
+        } else {
+            window.location = "/dashboard";
+        }
+    }
     chats = allData[3];
 
     let messageDiv = document.getElementById("messages");
